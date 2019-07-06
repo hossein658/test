@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.my.app.bank"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "BankNote",
+    "packageName": "com.my.app.bank",
+    "packageFolder": "com/my/app/bank",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YjdmZmNmYzAyMDFiMDA3MWUwYmZkM2NhNWE5NWFlMjVmNWUyMGQxNzZkOTczODQwYjlmOTU4MDE2ZjgwNGJjMzA4NmJlZWM2ZjI1MWI1YmE2ZDVmOGNhOTNiOTViMGJlZDllMGU3NjQzMjQwMjRlYTBjYjgzNWYyZWQ5MDM2YzY=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
