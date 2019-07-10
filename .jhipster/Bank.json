@@ -1,0 +1,36 @@
+{
+    "name": "Bank",
+    "fields": [
+        {
+            "fieldName": "branchCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "branchName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "bank",
+            "relationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "customerAccount",
+            "otherEntityRelationshipName": "bank",
+            "relationshipName": "customerAccount"
+        }
+    ],
+    "changelogDate": "20190710141121",
+    "entityTableName": "bank",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,55 @@
+{
+    "name": "CustomerAccount",
+    "fields": [
+        {
+            "fieldName": "accountNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE,BLOCKED"
+        },
+        {
+            "fieldName": "accountType",
+            "fieldType": "AccountType",
+            "fieldValues": "LONG,SHORT,CURRENT,GARZ"
+        },
+        {
+            "fieldName": "balance",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "article",
+            "otherEntityRelationshipName": "customerAccount",
+            "relationshipName": "article"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bank",
+            "otherEntityRelationshipName": "customerAccount",
+            "relationshipName": "bank",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "customerAccount",
+            "relationshipName": "customer",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190710141123",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "customer_account",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

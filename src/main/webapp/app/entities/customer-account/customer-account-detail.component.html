@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="customerAccount">
+            <h2><span>Customer Account</span> {{customerAccount.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Account Number</span></dt>
+                <dd>
+                    <span>{{customerAccount.accountNumber}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{customerAccount.status}}</span>
+                </dd>
+                <dt><span>Account Type</span></dt>
+                <dd>
+                    <span>{{customerAccount.accountType}}</span>
+                </dd>
+                <dt><span>Balance</span></dt>
+                <dd>
+                    <span>{{customerAccount.balance}}</span>
+                </dd>
+                <dt><span>Bank</span></dt>
+                <dd>
+                    <div *ngIf="customerAccount.bankId">
+                        <a [routerLink]="['/bank', customerAccount.bankId, 'view']">{{customerAccount.bankId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Customer</span></dt>
+                <dd>
+                    <div *ngIf="customerAccount.customerId">
+                        <a [routerLink]="['/customer', customerAccount.customerId, 'view']">{{customerAccount.customerId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/customer-account', customerAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

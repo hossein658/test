@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="article">
+            <h2><span>Article</span> {{article.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Date Transaction</span></dt>
+                <dd>
+                    <span>{{article.dateTransaction}}</span>
+                </dd>
+                <dt><span>Debtor Amount</span></dt>
+                <dd>
+                    <span>{{article.debtorAmount}}</span>
+                </dd>
+                <dt><span>Creditor Amount</span></dt>
+                <dd>
+                    <span>{{article.creditorAmount}}</span>
+                </dd>
+                <dt><span>Trans Action Type</span></dt>
+                <dd>
+                    <span>{{article.transActionType}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{article.description}}</span>
+                </dd>
+                <dt><span>Customer Account</span></dt>
+                <dd>
+                    <div *ngIf="article.customerAccountId">
+                        <a [routerLink]="['/customer-account', article.customerAccountId, 'view']">{{article.customerAccountId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/article', article.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

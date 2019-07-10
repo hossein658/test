@@ -1,0 +1,44 @@
+{
+    "name": "Article",
+    "fields": [
+        {
+            "fieldName": "dateTransaction",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "debtorAmount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "creditorAmount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "transActionType",
+            "fieldType": "TransActionType",
+            "fieldValues": "DEBTOR,CREDITOR"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customerAccount",
+            "otherEntityRelationshipName": "article",
+            "relationshipName": "customerAccount",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190710141124",
+    "entityTableName": "article",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

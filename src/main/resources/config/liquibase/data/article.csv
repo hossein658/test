@@ -1,0 +1,11 @@
+id;date_transaction;debtor_amount;creditor_amount;trans_action_type;description
+1;2019-07-10;55276;96665;CREDITOR;functionalities
+2;2019-07-10;85113;26847;CREDITOR;Maryland Configuration
+3;2019-07-09;93001;57006;DEBTOR;Zambian Kwacha intuitive
+4;2019-07-10;51832;29529;CREDITOR;real-time discrete redundant
+5;2019-07-09;25620;86707;DEBTOR;Auto Loan Account olive
+6;2019-07-10;70196;39678;DEBTOR;North Dakota Garden
+7;2019-07-10;15504;54264;CREDITOR;Licensed Plastic Pants
+8;2019-07-10;12706;32665;DEBTOR;Investment Account Refined Intelligent Granite Shirt
+9;2019-07-10;69951;63742;CREDITOR;Analyst card Licensed Cotton Ball
+10;2019-07-10;43897;74404;CREDITOR;Brand

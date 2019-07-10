@@ -1,0 +1,62 @@
+{
+    "name": "Customer",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fatherNmae",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nationalCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "birthDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "idNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "genderType",
+            "fieldType": "GenderType",
+            "fieldValues": "MALE,FEMALE"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "customerAccount",
+            "otherEntityRelationshipName": "customer",
+            "relationshipName": "customerAccount"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bank",
+            "otherEntityRelationshipName": "customer",
+            "relationshipName": "bank",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190710141122",
+    "entityTableName": "customer",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

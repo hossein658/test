@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-customer-account-heading">Create or edit a Customer Account</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_accountNumber">Account Number</label>
+                    <input type="text" class="form-control" name="accountNumber" id="field_accountNumber"
+                           formControlName="accountNumber"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="ACTIVE">ACTIVE</option>
+                        <option value="INACTIVE">INACTIVE</option>
+                        <option value="BLOCKED">BLOCKED</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_accountType">Account Type</label>
+                    <select class="form-control" name="accountType" formControlName="accountType" id="field_accountType">
+                        <option value="LONG">LONG</option>
+                        <option value="SHORT">SHORT</option>
+                        <option value="CURRENT">CURRENT</option>
+                        <option value="GARZ">GARZ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_balance">Balance</label>
+                    <input type="number" class="form-control" name="balance" id="field_balance"
+                           formControlName="balance"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_bank">Bank</label>
+                    <select class="form-control" id="field_bank" name="bank" formControlName="bankId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="bankOption.id" *ngFor="let bankOption of banks; trackBy: trackBankById">{{bankOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_customer">Customer</label>
+                    <select class="form-control" id="field_customer" name="customer" formControlName="customerId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

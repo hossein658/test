@@ -1,0 +1,69 @@
+entity Bank {
+	branchCode String,
+    branchName String
+}
+
+entity Customer {
+ firstName String,
+ lastName String,
+ fatherNmae String,
+ nationalCode String,
+ birthDate LocalDate,
+ idNumber  Integer,
+ genderType GenderType,
+ address  String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity CustomerAccount {
+	accountNumber String,
+	status Status,
+	accountType AccountType,
+    balance Long
+}
+
+entity Article {
+    dateTransaction LocalDate,
+	debtorAmount Long,
+	creditorAmount Long,
+	transActionType TransActionType,
+    description String
+}
+
+enum TransActionType {
+ DEBTOR, CREDITOR
+}
+
+enum GenderType {
+    MALE, FEMALE }
+
+
+enum AccountType {
+LONG, SHORT , CURRENT , GARZ
+}
+
+enum  Status
+{ ACTIVE, INACTIVE, BLOCKED
+
+}
+
+
+
+relationship OneToMany {
+	Bank to Customer,
+    Bank to CustomerAccount,
+	Customer to CustomerAccount,
+    CustomerAccount to Article
+}
+
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

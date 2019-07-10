@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-article-heading">Create or edit a Article</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateTransaction">Date Transaction</label>
+                    <div class="input-group">
+                        <input id="field_dateTransaction" type="text" class="form-control" name="dateTransaction" ngbDatepicker  #dateTransactionDp="ngbDatepicker" formControlName="dateTransaction"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateTransactionDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_debtorAmount">Debtor Amount</label>
+                    <input type="number" class="form-control" name="debtorAmount" id="field_debtorAmount"
+                           formControlName="debtorAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_creditorAmount">Creditor Amount</label>
+                    <input type="number" class="form-control" name="creditorAmount" id="field_creditorAmount"
+                           formControlName="creditorAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transActionType">Trans Action Type</label>
+                    <select class="form-control" name="transActionType" formControlName="transActionType" id="field_transActionType">
+                        <option value="DEBTOR">DEBTOR</option>
+                        <option value="CREDITOR">CREDITOR</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_customerAccount">Customer Account</label>
+                    <select class="form-control" id="field_customerAccount" name="customerAccount" formControlName="customerAccountId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerAccountOption.id" *ngFor="let customerAccountOption of customeraccounts; trackBy: trackCustomerAccountById">{{customerAccountOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
