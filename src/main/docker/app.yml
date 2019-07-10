@@ -1,21 +1,21 @@
 version: '2'
 services:
-  pillpal_server-app:
-    image: pillpal_server
+  bank_note-app:
+    image: bank_note
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
       - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
-      - SPRING_DATASOURCE_URL=jdbc:mysql://pillpal_server-mysql:3306/pillpal_server?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://bank_note-mysql:3306/bank_note?useUnicode=true&characterEncoding=utf8&useSSL=false
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     ports:
       - 8080:8080
-  pillpal_server-mysql:
+  bank_note-mysql:
     extends:
       file: mysql.yml
-      service: pillpal_server-mysql
+      service: bank_note-mysql
   jhipster-registry:
     extends:
       file: jhipster-registry.yml

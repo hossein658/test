@@ -24,8 +24,8 @@ eureka:
     instance-info-replication-interval-seconds: 10
     registry-fetch-interval-seconds: 10
   instance:
-    appname: pillpal_server
-    instanceId: pillpal_server:${spring.application.instance-id:${random.value}}
+    appname: bank_note
+    instanceId: bank_note:${spring.application.instance-id:${random.value}}
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
     status-page-url-path: ${management.endpoints.web.base-path}/info
@@ -83,7 +83,7 @@ management:
 
 spring:
   application:
-    name: pillpal_server
+    name: bank_note
   jmx:
     enabled: false
   data:
@@ -149,11 +149,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: pillpal_server@localhost
+    from: bank_note@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: pillpal_server API
-    description: pillpal_server API documentation
+    title: bank_note API
+    description: bank_note API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

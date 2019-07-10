@@ -1,7 +1,7 @@
 {
   "name": "pillpal-server",
   "version": "0.0.0",
-  "description": "Description for pillpal_server",
+  "description": "Description for bank_note",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [

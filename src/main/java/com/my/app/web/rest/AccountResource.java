@@ -8,7 +8,7 @@ import com.my.app.service.MailService;
 import com.my.app.service.UserService;
 import com.my.app.service.dto.PasswordChangeDTO;
 import com.my.app.service.dto.UserDTO;
-import com.medicai.pillpal.web.rest.errors.*;
+import com.my.app.web.rest.errors.*;
 import com.my.app.web.rest.errors.EmailAlreadyUsedException;
 import com.my.app.web.rest.errors.EmailNotFoundException;
 import com.my.app.web.rest.errors.InvalidPasswordException;

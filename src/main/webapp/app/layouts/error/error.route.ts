@@ -8,7 +8,7 @@ export const errorRoute: Routes = [
     component: ErrorComponent,
     data: {
       authorities: [],
-      pageTitle: 'pillpal_server'
+      pageTitle: 'bank_note'
     }
   },
   {
@@ -16,7 +16,7 @@ export const errorRoute: Routes = [
     component: ErrorComponent,
     data: {
       authorities: [],
-      pageTitle: 'pillpal_server',
+      pageTitle: 'bank_note',
       error403: true
     }
   },
@@ -25,7 +25,7 @@ export const errorRoute: Routes = [
     component: ErrorComponent,
     data: {
       authorities: [],
-      pageTitle: 'pillpal_server',
+      pageTitle: 'bank_note',
       error404: true
     }
   },

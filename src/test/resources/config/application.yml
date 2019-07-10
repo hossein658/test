@@ -17,15 +17,15 @@ eureka:
   client:
     enabled: false
   instance:
-    appname: pillpal_server
-    instanceId: pillpal_server:${spring.application.instance-id:${random.value}}
+    appname: bank_note
+    instanceId: bank_note:${spring.application.instance-id:${random.value}}
 
 spring:
   application:
-    name: pillpal_server
+    name: bank_note
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:pillpal_server;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
+    url: jdbc:h2:mem:bank_note;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
     name:
     username:
     password:

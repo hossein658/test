@@ -35,7 +35,7 @@ public class PillpalServerApp implements InitializingBean {
     }
 
     /**
-     * Initializes pillpal_server.
+     * Initializes bank_note.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>

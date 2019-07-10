@@ -1,6 +1,6 @@
 package com.my.app.service.mapper;
 
-import com.medicai.pillpal.domain.*;
+import com.my.app.domain.*;
 import com.my.app.domain.CustomerAccount;
 import com.my.app.service.dto.CustomerAccountDTO;
 
