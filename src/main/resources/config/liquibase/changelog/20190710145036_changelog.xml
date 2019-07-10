@@ -1,0 +1,151 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="PC_2 (generated)" id="1562770276688-1">
+        <createTable tableName="article">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="articlePK"/>
+            </column>
+            <column name="creditor_amount" type="BIGINT"/>
+            <column name="date_transaction" type="date"/>
+            <column name="debtor_amount" type="BIGINT"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="trans_action_type" type="VARCHAR(255)"/>
+            <column name="customer_account_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-2">
+        <createTable tableName="bank">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="bankPK"/>
+            </column>
+            <column name="branch_code" type="VARCHAR(255)"/>
+            <column name="branch_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-3">
+        <createTable tableName="customer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customerPK"/>
+            </column>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="birth_date" type="date"/>
+            <column name="father_nmae" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="gender_type" type="VARCHAR(255)"/>
+            <column name="id_number" type="INT"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="national_code" type="VARCHAR(255)"/>
+            <column name="bank_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-4">
+        <createTable tableName="customer_account">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customer_accountPK"/>
+            </column>
+            <column name="account_number" type="VARCHAR(255)"/>
+            <column name="account_type" type="VARCHAR(255)"/>
+            <column name="balance" type="BIGINT"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="bank_id" type="BIGINT"/>
+            <column name="customer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-5">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-6">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="TIMESTAMP"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-7">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-8">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="TIMESTAMP"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TIMESTAMP"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-9">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-10">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-11">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-12">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-13">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event" validate="true"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-14">
+        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer_account" constraintName="FK3gtaytfw9tjuh1nrj5k3m794o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bank" validate="true"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-15">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-16">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_account" constraintName="FK6c5oqutth35p5vmw0svg56msa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-17">
+        <addForeignKeyConstraint baseColumnNames="customer_account_id" baseTableName="article" constraintName="FKdxelhfpm4ld2ifwhedmvy39c8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer_account" validate="true"/>
+    </changeSet>
+    <changeSet author="PC_2 (generated)" id="1562770276688-18">
+        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer" constraintName="FKkegxm9b6vhjh30rgc0tvrk0r7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bank" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
