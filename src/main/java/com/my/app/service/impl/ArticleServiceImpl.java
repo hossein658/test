@@ -86,4 +86,9 @@ public class ArticleServiceImpl implements ArticleService {
         log.debug("Request to delete Article : {}", id);
         articleRepository.deleteById(id);
     }
+
+    public Page<ArticleDTO> findCustomizedArticle(Pageable page) {
+        return articleRepository.findCustomizedArticle(page)
+            .map(articleMapper::toDto);
+    }
 }
