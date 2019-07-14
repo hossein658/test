@@ -1,5 +1,7 @@
 package com.my.app.service.impl;
 
+import com.my.app.domain.enumeration.AccountType;
+import com.my.app.domain.enumeration.GenderType;
 import com.my.app.service.CustomerAccountService;
 import com.my.app.domain.CustomerAccount;
 import com.my.app.repository.CustomerAccountRepository;
@@ -16,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -91,11 +96,21 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
     }
 
     @Override
+    public Page<CustomerAccountDTO> findByBranchCode(Pageable pageable, String branchCode) {
+        log.debug("!!!");
+        return customerAccountRepository.findByBranchCode(pageable, branchCode)
+            .map(customerAccountMapper::toDto);
+    }
+
+
+    @Override
     public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable) {
-        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
-//        Stream<CustomerAccount> streamCustomerAccounts = customerAccounts.stream()
-//        .filter();
-//
+//        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
+//        Page<CustomerAccountsGroupByGenderAndTypeDTO > p = customerAccounts.stream()
+//            .map(new CustomerAccountsGroupByGenderAndTypeDTO() )
+//            .collect(Collectors.toList()            );
+
+
         return null;
     }
 
