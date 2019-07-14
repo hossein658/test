@@ -4,6 +4,7 @@ import com.my.app.service.CustomerAccountService;
 import com.my.app.domain.CustomerAccount;
 import com.my.app.repository.CustomerAccountRepository;
 import com.my.app.service.dto.CustomerAccountDTO;
+import com.my.app.service.dto.CustomerAccountsGroupByGenderAndTypeDTO;
 import com.my.app.service.mapper.CustomerAccountMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Service Implementation for managing {@link CustomerAccount}.
@@ -86,4 +89,14 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         log.debug("Request to delete CustomerAccount : {}", id);
         customerAccountRepository.deleteById(id);
     }
+
+    @Override
+    public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable) {
+        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
+//        Stream<CustomerAccount> streamCustomerAccounts = customerAccounts.stream()
+//        .filter();
+//
+        return null;
+    }
+
 }

@@ -44,4 +44,7 @@ public interface CustomerService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+
+    Page<CustomerDTO> findByBranchCode (Pageable p , String branchCode);
 }

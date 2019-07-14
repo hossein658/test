@@ -1,8 +1,10 @@
 package com.my.app.repository;
 
 import com.my.app.domain.CustomerAccount;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +16,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface CustomerAccountRepository extends JpaRepository<CustomerAccount, Long> {
+
+//    @Query("select from CustomerAccount ca " +
+//        "inner join "
+//
+//    )
+//    Page<CustomerAccount> findByBranchCode (Pageable page , @Param("branchCode") String branchCode)  ;
+
 }

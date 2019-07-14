@@ -86,4 +86,11 @@ public class CustomerServiceImpl implements CustomerService {
         log.debug("Request to delete Customer : {}", id);
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public Page<CustomerDTO> findByBranchCode(Pageable p, String bc) {
+        log.debug("!!!!");
+        return customerRepository.findByBranchCode(p, bc)
+            .map(customerMapper::toDto);
+    }
 }

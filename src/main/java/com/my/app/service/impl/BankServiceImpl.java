@@ -1,29 +1,24 @@
 package com.my.app.service.impl;
 
+import com.my.app.domain.Bank;
 import com.my.app.domain.Customer;
 import com.my.app.domain.enumeration.AccountType;
 import com.my.app.domain.enumeration.GenderType;
-import com.my.app.service.BankService;
-import com.my.app.domain.Bank;
 import com.my.app.repository.BankRepository;
+import com.my.app.service.BankService;
 import com.my.app.service.dto.BankDTO;
-import com.my.app.service.dto.CustomerAccountDTO;
-import com.my.app.service.dto.CustomerDTO;
-import com.my.app.service.dto.CustomizedAccountsDTO;
+import com.my.app.service.dto.CustomerAccountsGroupByGenderAndTypeDTO;
 import com.my.app.service.mapper.BankMapper;
 import com.my.app.service.mapper.CustomerAccountMapper;
 import com.my.app.service.mapper.CustomerMapper;
-import com.sun.org.apache.xpath.internal.operations.And;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Bank}.
@@ -32,7 +27,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class BankServiceImpl implements BankService {
 
-    private final Logger log = LoggerFactory.getLogger( BankServiceImpl.class );
+    private final Logger log = LoggerFactory.getLogger(BankServiceImpl.class);
     private final BankRepository bankRepository;
     private final BankMapper bankMapper;
     private final Bank bank;
@@ -63,10 +58,10 @@ public class BankServiceImpl implements BankService {
      */
     @Override
     public BankDTO save(BankDTO bankDTO) {
-        log.debug( "Request to save Bank : {}", bankDTO );
-        Bank bank = bankMapper.toEntity( bankDTO );
-        bank = bankRepository.save( bank );
-        return bankMapper.toDto( bank );
+        log.debug("Request to save Bank : {}", bankDTO);
+        Bank bank = bankMapper.toEntity(bankDTO);
+        bank = bankRepository.save(bank);
+        return bankMapper.toDto(bank);
     }
 
     /**
@@ -78,9 +73,9 @@ public class BankServiceImpl implements BankService {
     @Override
     @Transactional(readOnly = true)
     public Page<BankDTO> findAll(Pageable pageable) {
-        log.debug( "Request to get all Banks" );
-        return bankRepository.findAll( pageable )
-            .map( bankMapper::toDto );
+        log.debug("Request to get all Banks");
+        return bankRepository.findAll(pageable)
+            .map(bankMapper::toDto);
     }
 
 
@@ -93,9 +88,9 @@ public class BankServiceImpl implements BankService {
     @Override
     @Transactional(readOnly = true)
     public Optional<BankDTO> findOne(Long id) {
-        log.debug( "Request to get Bank : {}", id );
-        return bankRepository.findById( id )
-            .map( bankMapper::toDto );
+        log.debug("Request to get Bank : {}", id);
+        return bankRepository.findById(id)
+            .map(bankMapper::toDto);
     }
 
     /**
@@ -105,8 +100,8 @@ public class BankServiceImpl implements BankService {
      */
     @Override
     public void delete(Long id) {
-        log.debug( "Request to delete Bank : {}", id );
-        bankRepository.deleteById( id );
+        log.debug("Request to delete Bank : {}", id);
+        bankRepository.deleteById(id);
     }
 
     /**
@@ -116,37 +111,11 @@ public class BankServiceImpl implements BankService {
      * @param branchCode
      * @return a list of persisted entities
      */
-    public Page<CustomerAccountDTO> findAccountsByBranchCode(Pageable pageable, String branchCode) {
-        log.debug( "Request to get Bank : {}", pageable );
-        return bankRepository.findAccountsByBranchCode( pageable, branchCode )
-            .map( customerAccountMapper::toDto );
-    }
+    public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomizedAccounts(Pageable pageable, String branchCode) {
+        log.debug("Request to get Bank : {}", pageable);
+//        return bankRepository.findCustomersByBranchCode( pageable, branchCode )
+//            .filter( bankRepository -> !genderType.equals( genderType )And -> !accountType.equals( accountType );
 
-    /**
-     * get a branchCode
-     *
-     * @param pageable
-     * @param branchCode
-     * @return a list of persisted entities
-     */
-    public Page<CustomerDTO> findCustomersByBranchCode(Pageable pageable, String branchCode) {
-        log.debug( "Request to get Bank : {}", pageable );
-        return bankRepository.findCustomersByBranchCode( pageable, branchCode )
-            .map( customerMapper::toDto );
-    }
-
-    /**
-     * get a branchCode
-     *
-     * @param pageable
-     * @param branchCode
-     * @return a list of persisted entities
-     */
-    public Page<CustomizedAccountsDTO> findCustomizedAccounts(Pageable pageable, String branchCode) {
-        log.debug( "Request to get Bank : {}", pageable );
-        return bankRepository.findCustomersByBranchCode( pageable, branchCode )
-            .filter( bankRepository -> !genderType.equals( genderType )And -> !accountType.equals( accountType );
-
-
+        return null;
     }
 }

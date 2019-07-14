@@ -23,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -88,9 +89,9 @@ public class CustomerResource {
     /**
      * {@code GET  /customers} : get all the customers.
      *
-     * @param pageable the pagination information.
+     * @param pageable    the pagination information.
      * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
+     * @param uriBuilder  a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of customers in body.
      */
     @GetMapping("/customers")
@@ -126,4 +127,15 @@ public class CustomerResource {
         customerService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/customers/by-branch-code")
+    public ResponseEntity<List<CustomerDTO>> getCustomerByBracnhCode(Pageable pageable,
+                                                                     @RequestBody String branchCode, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to delete SideEffect : {}");
+        Page<CustomerDTO> page = customerService.findByBranchCode(pageable, branchCode);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+
 }
