@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pillpal-server": {
+    "bank-note": {
       "root": "",
       "sourceRoot": "src/main/webapp",
       "projectType": "application",
@@ -29,7 +29,7 @@
       "architect": {}
     }
   },
-  "defaultProject": "pillpal-server",
+  "defaultProject": "bank-note",
   "cli": {
     "packageManager": "npm"
   }
