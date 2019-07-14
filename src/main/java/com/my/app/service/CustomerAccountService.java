@@ -1,12 +1,12 @@
 package com.my.app.service;
 
+import com.my.app.domain.enumeration.GenderType;
 import com.my.app.service.dto.CustomerAccountDTO;
 
 import com.my.app.domain.CustomerAccount;
 import com.my.app.service.dto.CustomerAccountsGroupByGenderAndTypeDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -48,4 +48,10 @@ public interface CustomerAccountService {
     void delete(Long id);
 
     Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable);
+
+    Page<CustomerAccountDTO> findByBranchCode(Pageable p , String branchCode);
+
+    Page<CustomerAccountDTO> findByGenderAndAccountType(GenderType genderType , String accountType);
+
+    Page<CustomerAccountDTO> findByGenderAndAccountType(Pageable pageable, GenderType genderType, String accountType);
 }

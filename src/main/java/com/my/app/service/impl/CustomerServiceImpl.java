@@ -89,7 +89,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<CustomerDTO> findByBranchCode(Pageable p, String bc) {
-        log.debug("!!!!");
+        log.debug("Request to delete Customer : {}");
         return customerRepository.findByBranchCode(p, bc)
             .map(customerMapper::toDto);
     }

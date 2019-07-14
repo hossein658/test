@@ -1,5 +1,6 @@
 package com.my.app.service.impl;
 
+import com.my.app.domain.enumeration.GenderType;
 import com.my.app.service.CustomerAccountService;
 import com.my.app.domain.CustomerAccount;
 import com.my.app.repository.CustomerAccountRepository;
@@ -14,9 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * Service Implementation for managing {@link CustomerAccount}.
@@ -99,4 +98,29 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         return null;
     }
 
+    /**
+     * get a branchCode
+     * @param p
+     * @param branchCode
+     * @return the list of persisted entity
+     */
+    @Override
+    public Page<CustomerAccountDTO> findByBranchCode (Pageable p , String branchCode){
+        log.debug("Request to delete CustomerAccount : {}");
+        return customerAccountRepository.findByBranchCode( p,branchCode )
+            .map( customerAccountMapper::toDto );
+    }
+
+    /**
+     * get genderType and accountType
+     * @param genderType
+     * @param accountType
+     * @return the list of persisted entity
+     */
+    @Override
+    public Page<CustomerAccountDTO> findByGenderAndAccountType(Pageable pageable, GenderType genderType, String accountType) {
+        log.debug("Request to delete CustomerAccount : {}");
+        return customerAccountRepository.findByBranchCode( genderType , accountType )
+            .map( customerAccountMapper::toDto );
+    }
 }
