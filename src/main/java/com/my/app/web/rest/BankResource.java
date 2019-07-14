@@ -2,6 +2,9 @@ package com.my.app.web.rest;
 
 import com.my.app.domain.Bank;
 import com.my.app.service.BankService;
+import com.my.app.service.dto.CustomerAccountDTO;
+import com.my.app.service.dto.CustomerDTO;
+import com.my.app.service.dto.CustomizedAccountsDTO;
 import com.my.app.web.rest.errors.BadRequestAlertException;
 import com.my.app.service.dto.BankDTO;
 
@@ -32,7 +35,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class BankResource {
 
-    private final Logger log = LoggerFactory.getLogger(BankResource.class);
+    private final Logger log = LoggerFactory.getLogger( BankResource.class );
 
     private static final String ENTITY_NAME = "bank";
 
@@ -54,14 +57,14 @@ public class BankResource {
      */
     @PostMapping("/banks")
     public ResponseEntity<BankDTO> createBank(@RequestBody BankDTO bankDTO) throws URISyntaxException {
-        log.debug("REST request to save Bank : {}", bankDTO);
+        log.debug( "REST request to save Bank : {}", bankDTO );
         if (bankDTO.getId() != null) {
-            throw new BadRequestAlertException("A new bank cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException( "A new bank cannot already have an ID", ENTITY_NAME, "idexists" );
         }
-        BankDTO result = bankService.save(bankDTO);
-        return ResponseEntity.created(new URI("/api/banks/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        BankDTO result = bankService.save( bankDTO );
+        return ResponseEntity.created( new URI( "/api/banks/" + result.getId() ) )
+            .headers( HeaderUtil.createEntityCreationAlert( applicationName, false, ENTITY_NAME, result.getId().toString() ) )
+            .body( result );
     }
 
     /**
@@ -75,30 +78,30 @@ public class BankResource {
      */
     @PutMapping("/banks")
     public ResponseEntity<BankDTO> updateBank(@RequestBody BankDTO bankDTO) throws URISyntaxException {
-        log.debug("REST request to update Bank : {}", bankDTO);
+        log.debug( "REST request to update Bank : {}", bankDTO );
         if (bankDTO.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+            throw new BadRequestAlertException( "Invalid id", ENTITY_NAME, "idnull" );
         }
-        BankDTO result = bankService.save(bankDTO);
+        BankDTO result = bankService.save( bankDTO );
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, bankDTO.getId().toString()))
-            .body(result);
+            .headers( HeaderUtil.createEntityUpdateAlert( applicationName, false, ENTITY_NAME, bankDTO.getId().toString() ) )
+            .body( result );
     }
 
     /**
      * {@code GET  /banks} : get all the banks.
      *
-     * @param pageable the pagination information.
+     * @param pageable    the pagination information.
      * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
+     * @param uriBuilder  a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of banks in body.
      */
     @GetMapping("/banks")
     public ResponseEntity<List<BankDTO>> getAllBanks(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
-        log.debug("REST request to get a page of Banks");
-        Page<BankDTO> page = bankService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        log.debug( "REST request to get a page of Banks" );
+        Page<BankDTO> page = bankService.findAll( pageable );
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders( uriBuilder.queryParams( queryParams ), page );
+        return ResponseEntity.ok().headers( headers ).body( page.getContent() );
     }
 
     /**
@@ -109,9 +112,9 @@ public class BankResource {
      */
     @GetMapping("/banks/{id}")
     public ResponseEntity<BankDTO> getBank(@PathVariable Long id) {
-        log.debug("REST request to get Bank : {}", id);
-        Optional<BankDTO> bankDTO = bankService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(bankDTO);
+        log.debug( "REST request to get Bank : {}", id );
+        Optional<BankDTO> bankDTO = bankService.findOne( id );
+        return ResponseUtil.wrapOrNotFound( bankDTO );
     }
 
     /**
@@ -122,8 +125,58 @@ public class BankResource {
      */
     @DeleteMapping("/banks/{id}")
     public ResponseEntity<Void> deleteBank(@PathVariable Long id) {
-        log.debug("REST request to delete Bank : {}", id);
-        bankService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        log.debug( "REST request to delete Bank : {}", id );
+        bankService.delete( id );
+        return ResponseEntity.noContent().headers( HeaderUtil.createEntityDeletionAlert( applicationName, false, ENTITY_NAME, id.toString() ) ).build();
+    }
+
+    /**
+     * get a branchCode
+     *
+     * @param pageable
+     * @param branchCode
+     * @param uriBuilder
+     * @return a list of persisted entity
+     */
+    @GetMapping("/banks/customer-accounts/by-branch-code")
+    public ResponseEntity<List<CustomerAccountDTO>> getAccountsByBranchCode(Pageable pageable,
+                                                                            @RequestBody String branchCode, UriComponentsBuilder uriBuilder) {
+        log.debug( "REST request to delete SideEffect : {}" );
+        Page<CustomerAccountDTO> page = bankService.findAccountsByBranchCode( pageable, branchCode );
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders( uriBuilder, page );
+        return ResponseEntity.ok().headers( headers ).body( page.getContent() );
+    }
+
+    /**
+     * get a branchCode
+     *
+     * @param pageable
+     * @param branchCode
+     * @param uriBuilder
+     * @return a list of persisted entity
+     */
+    @GetMapping("/banks/customers/by-branch-code")
+    public ResponseEntity<List<CustomerDTO>> getCustomersByBranchCode(Pageable pageable,
+                                                                      @RequestBody String branchCode, UriComponentsBuilder uriBuilder) {
+        log.debug( "REST request to delete SideEffect : {}" );
+        Page<CustomerDTO> page = bankService.findCustomersByBranchCode( pageable, branchCode );
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders( uriBuilder, page );
+        return ResponseEntity.ok().headers( headers ).body( page.getContent() );
+    }
+
+    /**
+     * get a branchCode
+     * @param pageable
+     * @param branchCode
+     * @param uriBuilder
+     * @return a list of persisted entity
+     */
+    @GetMapping("/banks/customized-accounts/by-branch-code")
+    public ResponseEntity<List<CustomizedAccountsDTO>> getCustomizedAccounts(Pageable pageable,
+                                                                             @RequestBody String branchCode, UriComponentsBuilder uriBuilder) {
+        log.debug( "REST request to delete SideEffect : {}" );
+        Page<CustomizedAccountsDTO> page = bankService.findCustomizedAccounts( pageable, branchCode );
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders( uriBuilder, page );
+        return ResponseEntity.ok().headers( headers ).body( page.getContent() );
     }
 }
