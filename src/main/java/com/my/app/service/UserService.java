@@ -9,8 +9,6 @@ import com.my.app.security.AuthoritiesConstants;
 import com.my.app.security.SecurityUtils;
 import com.my.app.service.dto.UserDTO;
 import com.my.app.service.util.RandomUtil;
-import com.my.app.web.rest.errors.*;
-
 import com.my.app.web.rest.errors.EmailAlreadyUsedException;
 import com.my.app.web.rest.errors.InvalidPasswordException;
 import com.my.app.web.rest.errors.LoginAlreadyUsedException;

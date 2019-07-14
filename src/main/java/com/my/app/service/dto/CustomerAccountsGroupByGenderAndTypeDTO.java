@@ -1,10 +1,7 @@
 package com.my.app.service.dto;
 
-import com.my.app.domain.CustomerAccount;
 import com.my.app.domain.enumeration.AccountType;
 import com.my.app.domain.enumeration.GenderType;
-
-import java.util.Objects;
 
 public class CustomerAccountsGroupByGenderAndTypeDTO {
 

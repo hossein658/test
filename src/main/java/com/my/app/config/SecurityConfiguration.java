@@ -1,8 +1,5 @@
 package com.my.app.config;
 
-import com.my.app.security.*;
-import com.my.app.security.jwt.*;
-
 import com.my.app.security.AuthoritiesConstants;
 import com.my.app.security.jwt.JWTConfigurer;
 import com.my.app.security.jwt.TokenProvider;

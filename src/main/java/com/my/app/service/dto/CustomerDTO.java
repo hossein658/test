@@ -1,10 +1,11 @@
 package com.my.app.service.dto;
-import java.time.LocalDate;
-import java.io.Serializable;
-import java.util.Objects;
 
 import com.my.app.domain.Customer;
 import com.my.app.domain.enumeration.GenderType;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A DTO for the {@link Customer} entity.

@@ -1,8 +1,10 @@
 package com.my.app.service.dto;
+
 import com.my.app.domain.CustomerAccount;
 import com.my.app.domain.enumeration.AccountType;
 import com.my.app.domain.enumeration.Status;
 import io.swagger.annotations.ApiModel;
+
 import java.io.Serializable;
 import java.util.Objects;
 

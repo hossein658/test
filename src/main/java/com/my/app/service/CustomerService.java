@@ -1,8 +1,7 @@
 package com.my.app.service;
 
-import com.my.app.service.dto.CustomerDTO;
-
 import com.my.app.domain.Customer;
+import com.my.app.service.dto.CustomerDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

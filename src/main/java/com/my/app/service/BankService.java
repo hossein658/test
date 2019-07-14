@@ -1,8 +1,7 @@
 package com.my.app.service;
 
-import com.my.app.service.dto.BankDTO;
-
 import com.my.app.domain.Bank;
+import com.my.app.service.dto.BankDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

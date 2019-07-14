@@ -2,7 +2,6 @@ package com.my.app.service;
 
 import com.my.app.domain.Article;
 import com.my.app.service.dto.ArticleDTO;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

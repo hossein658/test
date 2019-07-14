@@ -8,14 +8,12 @@ import com.my.app.service.MailService;
 import com.my.app.service.UserService;
 import com.my.app.service.dto.PasswordChangeDTO;
 import com.my.app.service.dto.UserDTO;
-import com.my.app.web.rest.errors.*;
 import com.my.app.web.rest.errors.EmailAlreadyUsedException;
 import com.my.app.web.rest.errors.EmailNotFoundException;
 import com.my.app.web.rest.errors.InvalidPasswordException;
 import com.my.app.web.rest.errors.LoginAlreadyUsedException;
 import com.my.app.web.rest.vm.KeyAndPasswordVM;
 import com.my.app.web.rest.vm.ManagedUserVM;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.

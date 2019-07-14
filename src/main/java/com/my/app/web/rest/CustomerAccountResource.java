@@ -2,9 +2,9 @@ package com.my.app.web.rest;
 
 import com.my.app.domain.CustomerAccount;
 import com.my.app.service.CustomerAccountService;
-import com.my.app.web.rest.errors.BadRequestAlertException;
 import com.my.app.service.dto.CustomerAccountDTO;
-
+import com.my.app.service.dto.CustomerAccountFilterDTO;
+import com.my.app.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -14,14 +14,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -88,9 +87,9 @@ public class CustomerAccountResource {
     /**
      * {@code GET  /customer-accounts} : get all the customerAccounts.
      *
-     * @param pageable the pagination information.
+     * @param pageable    the pagination information.
      * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
+     * @param uriBuilder  a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of customerAccounts in body.
      */
     @GetMapping("/customer-accounts")
@@ -125,5 +124,33 @@ public class CustomerAccountResource {
         log.debug("REST request to delete CustomerAccount : {}", id);
         customerAccountService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * get a branchCode
+     *
+     * @param pageable
+     * @param branchCode
+     * @param uriBuilder
+     * @return the list of persisted entity
+     */
+    @GetMapping("/customer-accounts/by-branch-code")
+    public ResponseEntity<List<CustomerAccountDTO>> getCustomerAccountByBracnhCode(Pageable pageable,
+                                                                                   @RequestBody String branchCode, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to delete SideEffect : {}");
+        Page<CustomerAccountDTO> page = customerAccountService.findByBranchCode(pageable, branchCode);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/customer-accounts/by-gender-type-and-account-type")
+    public ResponseEntity<List<CustomerAccountDTO>> getCustomerAccountByGenderTypeAndAccountType(Pageable pageable,
+                                                                                                 @RequestBody CustomerAccountFilterDTO customerAccountFilterDTO, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to delete SideEffect : {}");
+        Page<CustomerAccountDTO> page = customerAccountService.findByGenderAndAccountType(pageable,
+            customerAccountFilterDTO.getGenderType(),
+            customerAccountFilterDTO.getAccountType());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

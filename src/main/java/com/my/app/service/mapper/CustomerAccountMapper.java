@@ -1,10 +1,9 @@
 package com.my.app.service.mapper;
 
-import com.my.app.domain.*;
 import com.my.app.domain.CustomerAccount;
 import com.my.app.service.dto.CustomerAccountDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link CustomerAccount} and its DTO {@link CustomerAccountDTO}.

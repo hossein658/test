@@ -1,4 +1,5 @@
 package com.my.app.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.my.app.domain.enumeration.AccountType;
 import com.my.app.domain.enumeration.Status;
@@ -6,7 +7,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

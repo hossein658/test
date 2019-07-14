@@ -1,27 +1,22 @@
 package com.my.app.service.impl;
 
+import com.my.app.domain.CustomerAccount;
 import com.my.app.domain.enumeration.AccountType;
 import com.my.app.domain.enumeration.GenderType;
-import com.my.app.service.CustomerAccountService;
-import com.my.app.domain.CustomerAccount;
 import com.my.app.repository.CustomerAccountRepository;
+import com.my.app.service.CustomerAccountService;
 import com.my.app.service.dto.CustomerAccountDTO;
 import com.my.app.service.dto.CustomerAccountsGroupByGenderAndTypeDTO;
 import com.my.app.service.mapper.CustomerAccountMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 /**
  * Service Implementation for managing {@link CustomerAccount}.
@@ -95,13 +90,6 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         customerAccountRepository.deleteById(id);
     }
 
-    @Override
-    public Page<CustomerAccountDTO> findByBranchCode(Pageable pageable, String branchCode) {
-        log.debug("!!!");
-        return customerAccountRepository.findByBranchCode(pageable, branchCode)
-            .map(customerAccountMapper::toDto);
-    }
-
 
     @Override
     public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable) {
@@ -114,4 +102,31 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         return null;
     }
 
+    /**
+     * get a branchCode
+     *
+     * @param p
+     * @param branchCode
+     * @return the list of persisted entity
+     */
+    @Override
+    public Page<CustomerAccountDTO> findByBranchCode(Pageable p, String branchCode) {
+        log.debug("Request to delete CustomerAccount : {}");
+        return customerAccountRepository.findByBranchCode(p, branchCode)
+            .map(customerAccountMapper::toDto);
+    }
+
+    /**
+     * get genderType and accountType
+     *
+     * @param genderType
+     * @param accountType
+     * @return the list of persisted entity
+     */
+    @Override
+    public Page<CustomerAccountDTO> findByGenderAndAccountType(Pageable pageable, GenderType genderType, AccountType accountType) {
+        log.debug("Request to delete CustomerAccount : {}");
+        return customerAccountRepository.findByGenderTypeAndAccountType(pageable, genderType, accountType)
+            .map(customerAccountMapper::toDto);
+    }
 }

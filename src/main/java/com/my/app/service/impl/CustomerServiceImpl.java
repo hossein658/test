@@ -1,13 +1,12 @@
 package com.my.app.service.impl;
 
-import com.my.app.service.CustomerService;
 import com.my.app.domain.Customer;
 import com.my.app.repository.CustomerRepository;
+import com.my.app.service.CustomerService;
 import com.my.app.service.dto.CustomerDTO;
 import com.my.app.service.mapper.CustomerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -89,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<CustomerDTO> findByBranchCode(Pageable p, String bc) {
-        log.debug("!!!!");
+        log.debug("Request to delete Customer : {}");
         return customerRepository.findByBranchCode(p, bc)
             .map(customerMapper::toDto);
     }
