@@ -129,4 +129,17 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         return customerAccountRepository.findByGenderTypeAndAccountType(pageable, genderType, accountType)
             .map(customerAccountMapper::toDto);
     }
+
+    /**
+     * get
+     * @param p
+     * @param accountType
+     * @return
+     */
+    @Override
+    public Page<CustomerAccountDTO> findByAccountType(Pageable p, AccountType accountType) {
+        log.debug("Request to delete CustomerAccount : {}");
+        return customerAccountRepository.findByAccountType(p , accountType)
+            .map(customerAccountMapper::toDto);
+    }
 }

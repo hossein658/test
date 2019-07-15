@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 public interface CustomerAccountRepository extends JpaRepository<CustomerAccount, Long> {
 
 
-    @Query("select from CustomerAccount ca " +
+    @Query("select ca from CustomerAccount ca " +
         "inner join ca.bank b " +
         "where b.branchCode = :branchCode"    )
     Page<CustomerAccount> findByBranchCode (Pageable page , @Param("branchCode") String branchCode)  ;
@@ -32,5 +32,9 @@ public interface CustomerAccountRepository extends JpaRepository<CustomerAccount
                                                          @Param("genderType") GenderType genderType,
                                                          @Param("accountType") AccountType accountType);
 
+    @Query("select ca from CustomerAccount ca " +
+        "inner join ca.bank b " +
+        "where ca.accountType  = :accountType " )
+    Page<CustomerAccount> findByAccountType(Pageable page , @Param("accountType") AccountType accountType);
 
 }

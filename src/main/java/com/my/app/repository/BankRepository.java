@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Long> {
 
-    Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomizedAccounts(Pageable pageable
-        , @Param("branchCode") String branchCode);
+
 
 }

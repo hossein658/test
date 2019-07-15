@@ -52,4 +52,6 @@ public interface CustomerAccountService {
     Page<CustomerAccountDTO> findByGenderAndAccountType(Pageable pageable, GenderType genderType, AccountType accountType);
 
     Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable);
+
+    Page<CustomerAccountDTO> findByAccountType (Pageable p , AccountType accountType);
 }
