@@ -111,11 +111,6 @@ public class BankServiceImpl implements BankService {
      * @param branchCode
      * @return a list of persisted entities
      */
-    public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomizedAccounts(Pageable pageable, String branchCode) {
-        log.debug("Request to get Bank : {}", pageable);
-//        return bankRepository.findCustomersByBranchCode( pageable, branchCode )
-//            .filter( bankRepository -> !genderType.equals( genderType )And -> !accountType.equals( accountType );
 
-        return null;
-    }
+
 }
