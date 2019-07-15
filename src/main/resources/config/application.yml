@@ -108,13 +108,13 @@ spring:
       enabled: false
   task:
     execution:
-      thread-name-prefix: pillpal-server-task-
+      thread-name-prefix: bank-note-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: pillpal-server-scheduling-
+      thread-name-prefix: bank-note-scheduling-
       pool:
         size: 2
   thymeleaf:

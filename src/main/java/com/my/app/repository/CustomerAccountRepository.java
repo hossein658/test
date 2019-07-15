@@ -27,9 +27,9 @@ public interface CustomerAccountRepository extends JpaRepository<CustomerAccount
     @Query("select ca from CustomerAccount ca " +
         "inner join ca.customer c " +
         "where ca.accountType  = :accountType " +
-        "and c.genderType = :gendertType")
+        "and c.genderType = :genderType")
     Page<CustomerAccount> findByGenderTypeAndAccountType(Pageable page ,
-                                                         @Param("gendertType") GenderType genderType,
+                                                         @Param("genderType") GenderType genderType,
                                                          @Param("accountType") AccountType accountType);
 
 

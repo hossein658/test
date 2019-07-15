@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.my.app</groupId>
-    <artifactId>pillpal-server</artifactId>
+    <artifactId>bank-note</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Pillpal Server</name>
