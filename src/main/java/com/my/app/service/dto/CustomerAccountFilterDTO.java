@@ -3,10 +3,9 @@ package com.my.app.service.dto;
 import com.my.app.domain.enumeration.AccountType;
 import com.my.app.domain.enumeration.GenderType;
 
-public class CustomerAccountFilterDTO
-{
-    private GenderType genderType ;
-    private AccountType accountType ;
+public class CustomerAccountFilterDTO {
+    private GenderType genderType;
+    private AccountType accountType;
 
     public CustomerAccountFilterDTO(GenderType genderType, AccountType accountType) {
         this.genderType = genderType;

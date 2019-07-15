@@ -1,9 +1,10 @@
 <div>
     <h2 id="page-heading">
         <span>Articles</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-article" [routerLink]="['/article/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-article"
+                [routerLink]="['/article/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span >
+            <span>
             Create new Article
             </span>
         </button>
@@ -17,14 +18,28 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="dateTransaction"><span>Date Transaction</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="debtorAmount"><span>Debtor Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="creditorAmount"><span>Creditor Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="transActionType"><span>Trans Action Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="customerAccountId"><span>Customer Account</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span>ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="dateTransaction"><span>Date Transaction</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="debtorAmount"><span>Debtor Amount</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="creditorAmount"><span>Creditor Amount</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="transActionType"><span>Trans Action Type</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="description"><span>Description</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="customerAccountId"><span>Customer Account</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,7 +52,7 @@
                 <td>{{article.description}}</td>
                 <td>
                     <div *ngIf="article.customerAccountId">
-                        <a [routerLink]="['../customer-account', article.customerAccountId , 'view' ]" >{{article.customerAccountId}}</a>
+                        <a [routerLink]="['../customer-account', article.customerAccountId , 'view' ]">{{article.customerAccountId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -70,10 +85,12 @@
     </div>
     <div [hidden]="articles?.length === 0">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5"
+                            [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

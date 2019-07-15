@@ -21,20 +21,15 @@ public interface CustomerAccountRepository extends JpaRepository<CustomerAccount
 
     @Query("select ca from CustomerAccount ca " +
         "inner join ca.bank b " +
-        "where b.branchCode = :branchCode"    )
-    Page<CustomerAccount> findByBranchCode (Pageable page , @Param("branchCode") String branchCode)  ;
+        "where b.branchCode = :branchCode")
+    Page<CustomerAccount> findByBranchCode(Pageable page, @Param("branchCode") String branchCode);
 
     @Query("select ca from CustomerAccount ca " +
         "inner join ca.customer c " +
         "where ca.accountType  = :accountType " +
         "and c.genderType = :genderType")
-    Page<CustomerAccount> findByGenderTypeAndAccountType(Pageable page ,
+    Page<CustomerAccount> findByGenderTypeAndAccountType(Pageable page,
                                                          @Param("genderType") GenderType genderType,
                                                          @Param("accountType") AccountType accountType);
-
-    @Query("select ca from CustomerAccount ca " +
-        "inner join ca.bank b " +
-        "where ca.accountType  = :accountType " )
-    Page<CustomerAccount> findByAccountType(Pageable page , @Param("accountType") AccountType accountType);
 
 }

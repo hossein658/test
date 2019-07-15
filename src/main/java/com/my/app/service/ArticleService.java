@@ -44,6 +44,6 @@ public interface ArticleService {
      */
     void delete(Long id);
 
-    Page<ArticleDTO> findCustomizedArticle (Pageable page ) ;
+    Page<ArticleDTO> findCustomizedArticle(Pageable page);
 
 }

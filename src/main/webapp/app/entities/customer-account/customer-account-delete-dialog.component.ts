@@ -47,7 +47,10 @@ export class CustomerAccountDeletePopupComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ customerAccount }) => {
       setTimeout(() => {
-        this.ngbModalRef = this.modalService.open(CustomerAccountDeleteDialogComponent as Component, { size: 'lg', backdrop: 'static' });
+        this.ngbModalRef = this.modalService.open(CustomerAccountDeleteDialogComponent as Component, {
+          size: 'lg',
+          backdrop: 'static'
+        });
         this.ngbModalRef.componentInstance.customerAccount = customerAccount;
         this.ngbModalRef.result.then(
           result => {

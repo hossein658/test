@@ -7,7 +7,7 @@
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                           readonly/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_firstName">First Name</label>
@@ -32,9 +32,11 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_birthDate">Birth Date</label>
                     <div class="input-group">
-                        <input id="field_birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker  #birthDateDp="ngbDatepicker" formControlName="birthDate"/>
+                        <input id="field_birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker
+                               #birthDateDp="ngbDatepicker" formControlName="birthDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon
+                                [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                     </div>
                 </div>
@@ -60,15 +62,17 @@
                     <label class="form-control-label" for="field_bank">Bank</label>
                     <select class="form-control" id="field_bank" name="bank" formControlName="bankId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="bankOption.id" *ngFor="let bankOption of banks; trackBy: trackBankById">{{bankOption.id}}</option>
+                        <option [ngValue]="bankOption.id"
+                                *ngFor="let bankOption of banks; trackBy: trackBankById">{{bankOption.id}}</option>
                     </select>
                 </div>
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
                 </button>
             </div>

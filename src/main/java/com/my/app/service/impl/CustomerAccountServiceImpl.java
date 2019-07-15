@@ -8,6 +8,7 @@ import com.my.app.service.CustomerAccountService;
 import com.my.app.service.dto.CustomerAccountDTO;
 import com.my.app.service.dto.CustomerAccountsGroupByGenderAndTypeDTO;
 import com.my.app.service.mapper.CustomerAccountMapper;
+import org.checkerframework.checker.nullness.Opt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -94,12 +96,13 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
 
     @Override
-    public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable) {
-        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
+    public Optional<Map<AccountType, Long>> countByCustomerAccountType() {
+        List<CustomerAccount> customerAccounts = customerAccountRepository.findAll();
         Map<AccountType, Long> p = customerAccounts.stream()
             .map(customerAccountMapper::toDto)
             .collect(Collectors.groupingBy(CustomerAccountDTO::getAccountType, Collectors.counting()));
-        return null;
+
+        return Optional.of(p);
     }
 
     /**
@@ -127,20 +130,6 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
     public Page<CustomerAccountDTO> findByGenderAndAccountType(Pageable pageable, GenderType genderType, AccountType accountType) {
         log.debug("Request to delete CustomerAccount : {}");
         return customerAccountRepository.findByGenderTypeAndAccountType(pageable, genderType, accountType)
-            .map(customerAccountMapper::toDto);
-    }
-
-    /**
-     * get
-     *
-     * @param p
-     * @param accountType
-     * @return
-     */
-    @Override
-    public Page<CustomerAccountDTO> findByAccountType(Pageable p, AccountType accountType) {
-        log.debug("Request to delete CustomerAccount : {}");
-        return customerAccountRepository.findByAccountType(p, accountType)
             .map(customerAccountMapper::toDto);
     }
 }

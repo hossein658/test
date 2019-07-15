@@ -27,7 +27,7 @@ import java.util.Optional;
 @Transactional
 public class BankServiceImpl implements BankService {
 
-    private final Logger log = LoggerFactory.getLogger( BankServiceImpl.class );
+    private final Logger log = LoggerFactory.getLogger(BankServiceImpl.class);
     private final BankRepository bankRepository;
     private final BankMapper bankMapper;
 
@@ -46,10 +46,10 @@ public class BankServiceImpl implements BankService {
      */
     @Override
     public BankDTO save(BankDTO bankDTO) {
-        log.debug( "Request to save Bank : {}", bankDTO );
-        Bank bank = bankMapper.toEntity( bankDTO );
-        bank = bankRepository.save( bank );
-        return bankMapper.toDto( bank );
+        log.debug("Request to save Bank : {}", bankDTO);
+        Bank bank = bankMapper.toEntity(bankDTO);
+        bank = bankRepository.save(bank);
+        return bankMapper.toDto(bank);
     }
 
     /**
@@ -61,9 +61,9 @@ public class BankServiceImpl implements BankService {
     @Override
     @Transactional(readOnly = true)
     public Page<BankDTO> findAll(Pageable pageable) {
-        log.debug( "Request to get all Banks" );
-        return bankRepository.findAll( pageable )
-            .map( bankMapper::toDto );
+        log.debug("Request to get all Banks");
+        return bankRepository.findAll(pageable)
+            .map(bankMapper::toDto);
     }
 
 
@@ -76,9 +76,9 @@ public class BankServiceImpl implements BankService {
     @Override
     @Transactional(readOnly = true)
     public Optional<BankDTO> findOne(Long id) {
-        log.debug( "Request to get Bank : {}", id );
-        return bankRepository.findById( id )
-            .map( bankMapper::toDto );
+        log.debug("Request to get Bank : {}", id);
+        return bankRepository.findById(id)
+            .map(bankMapper::toDto);
     }
 
     /**
@@ -88,7 +88,7 @@ public class BankServiceImpl implements BankService {
      */
     @Override
     public void delete(Long id) {
-        log.debug( "Request to delete Bank : {}", id );
-        bankRepository.deleteById( id );
+        log.debug("Request to delete Bank : {}", id);
+        bankRepository.deleteById(id);
     }
 }
