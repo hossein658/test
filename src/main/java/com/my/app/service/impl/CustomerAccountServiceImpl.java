@@ -15,7 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 /**
@@ -93,12 +95,10 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
     @Override
     public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable) {
-//        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
-//        Page<CustomerAccountsGroupByGenderAndTypeDTO > p = customerAccounts.stream()
-//            .map(new CustomerAccountsGroupByGenderAndTypeDTO() )
-//            .collect(Collectors.toList()            );
-
-
+        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
+        Map<AccountType, Long> p = customerAccounts.stream()
+            .map(customerAccountMapper::toDto)
+            .collect(Collectors.groupingBy(CustomerAccountDTO::getAccountType, Collectors.counting()));
         return null;
     }
 
@@ -132,6 +132,7 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
     /**
      * get
+     *
      * @param p
      * @param accountType
      * @return
@@ -139,7 +140,7 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
     @Override
     public Page<CustomerAccountDTO> findByAccountType(Pageable p, AccountType accountType) {
         log.debug("Request to delete CustomerAccount : {}");
-        return customerAccountRepository.findByAccountType(p , accountType)
+        return customerAccountRepository.findByAccountType(p, accountType)
             .map(customerAccountMapper::toDto);
     }
 }
