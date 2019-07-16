@@ -54,4 +54,6 @@ public interface CustomerAccountService {
 
     Optional<Map<AccountType, Long>> countByCustomerAccountType();
 
+    Optional<Map<Long  ,  Map<AccountType, Long>>> countByBranchCustomerAccountType();
+
 }

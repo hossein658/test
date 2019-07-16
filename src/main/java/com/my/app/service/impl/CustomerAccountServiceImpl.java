@@ -132,4 +132,15 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         return customerAccountRepository.findByGenderTypeAndAccountType(pageable, genderType, accountType)
             .map(customerAccountMapper::toDto);
     }
+
+
+    @Override
+    public Optional<Map<Long  ,  Map<AccountType, Long>>> countByBranchCustomerAccountType() {
+        List<CustomerAccount> customerAccounts = customerAccountRepository.findAll();
+        Map<Long, Map<AccountType, Long>> p = customerAccounts.stream()
+            .map(customerAccountMapper::toDto)
+            .collect(Collectors.groupingBy(CustomerAccountDTO::getBankId ,
+                Collectors.groupingBy(CustomerAccountDTO::getAccountType , Collectors.counting())));
+        return Optional.of(p);
+    }
 }

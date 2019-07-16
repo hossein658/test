@@ -162,4 +162,13 @@ public class CustomerAccountResource {
         Optional<Map<AccountType, Long>> result = customerAccountService.countByCustomerAccountType();
         return ResponseUtil.wrapOrNotFound(result);
     }
+
+    @GetMapping("/customer-accounts/counting-by-branch-account-type")
+    public ResponseEntity <Map<Long ,  Map< AccountType, Long>>> getCustomerAccountCountByBranchAccountType() {
+        log.debug("REST request to delete SideEffect : {}");
+        Optional<Map<Long  , Map <AccountType, Long>>> result = customerAccountService.countByBranchCustomerAccountType();
+        return ResponseUtil.wrapOrNotFound(result);
+    }
+
+
 }
