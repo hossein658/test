@@ -7,6 +7,9 @@ public class CustomerAccountFilterDTO {
     private GenderType genderType;
     private AccountType accountType;
 
+    public CustomerAccountFilterDTO() {
+    }
+
     public CustomerAccountFilterDTO(GenderType genderType, AccountType accountType) {
         this.genderType = genderType;
         this.accountType = accountType;
