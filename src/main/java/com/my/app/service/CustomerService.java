@@ -45,5 +45,5 @@ public interface CustomerService {
     void delete(Long id);
 
 
-    Page<CustomerDTO> findByBranchCode (Pageable p , String branchCode);
+    Page<CustomerDTO> findCustomerByBranchCode (Pageable pageable , String branchCode);
 }

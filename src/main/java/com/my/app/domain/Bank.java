@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -122,20 +123,20 @@ public class Bank implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Bank)) {
-            return false;
-        }
-        return id != null && id.equals(((Bank) o).id);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bank bank = (Bank) o;
+        return Objects.equals(id, bank.id) &&
+            Objects.equals(branchCode, bank.branchCode) &&
+            Objects.equals(branchName, bank.branchName);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(id, branchCode, branchName);
     }
 
     @Override

@@ -1,16 +1,11 @@
 package com.my.app.service.impl;
 
+
 import com.my.app.domain.Bank;
-import com.my.app.domain.Customer;
-import com.my.app.domain.enumeration.AccountType;
-import com.my.app.domain.enumeration.GenderType;
 import com.my.app.repository.BankRepository;
 import com.my.app.service.BankService;
 import com.my.app.service.dto.BankDTO;
-import com.my.app.service.dto.CustomerAccountsGroupByGenderAndTypeDTO;
 import com.my.app.service.mapper.BankMapper;
-import com.my.app.service.mapper.CustomerAccountMapper;
-import com.my.app.service.mapper.CustomerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -30,24 +25,12 @@ public class BankServiceImpl implements BankService {
     private final Logger log = LoggerFactory.getLogger(BankServiceImpl.class);
     private final BankRepository bankRepository;
     private final BankMapper bankMapper;
-    private final Bank bank;
-    private final CustomerAccountMapper customerAccountMapper;
-    private final CustomerMapper customerMapper;
-    private final GenderType genderType;
-    private final AccountType accountType;
-    private final Customer customer;
 
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public BankServiceImpl(BankRepository bankRepository, BankMapper bankMapper, Bank bank, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, GenderType genderType, AccountType accountType, Customer customer) {
+    public BankServiceImpl(BankRepository bankRepository, BankMapper bankMapper) {
         this.bankRepository = bankRepository;
         this.bankMapper = bankMapper;
-        this.bank = bank;
-        this.customerAccountMapper = customerAccountMapper;
-        this.customerMapper = customerMapper;
-        this.genderType = genderType;
-        this.accountType = accountType;
-        this.customer = customer;
     }
 
     /**
@@ -104,13 +87,10 @@ public class BankServiceImpl implements BankService {
         bankRepository.deleteById(id);
     }
 
-    /**
-     * get a branchCode
-     *
-     * @param pageable
-     * @param branchCode
-     * @return a list of persisted entities
-     */
 
+    @Override
+    public Bank findBankByBranchCode(String branchCode) {
+        return bankRepository.findOneByBranchCode(branchCode);
+    }
 
 }

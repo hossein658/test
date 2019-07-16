@@ -15,8 +15,11 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
     @Query("select c from Customer c " +
-        "inner join c.bank b " +
-        "where b.branchCode = :branchCode")
-    Page<Customer> findByBranchCode(Pageable page , @Param("branchCode") String branchCode);
+        " inner join c.bank b " +
+        " where b.branchCode = :branchCode ")
+
+    Page<Customer> findByBranchCode(Pageable pageable , @Param("branchCode") String branchCode);
+
 }

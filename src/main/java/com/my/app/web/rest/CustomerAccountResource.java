@@ -1,6 +1,7 @@
 package com.my.app.web.rest;
 
 import com.my.app.domain.CustomerAccount;
+import com.my.app.domain.enumeration.AccountType;
 import com.my.app.service.CustomerAccountService;
 import com.my.app.service.dto.CustomerAccountDTO;
 import com.my.app.service.dto.CustomerAccountFilterDTO;
@@ -22,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -153,4 +155,45 @@ public class CustomerAccountResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+    /**
+     *
+     * @return
+     */
+
+    @GetMapping("/customer-accounts/by-account-type")
+    public ResponseEntity<Map<AccountType,Long>> getCustomerAccountCountByAccountType() {
+        log.debug( "REST request to delete SideEffect : {}" );
+       Optional<Map<AccountType,Long>> accountTypeLongMap = customerAccountService.countByAccountTypeAndByBank();
+       // HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
+        return ResponseUtil.wrapOrNotFound(accountTypeLongMap);
+    }
+
+    @PostMapping("/customer-accounts/bank-by-type")
+    public Page<CustomerAccount> getCustomerAccount(Pageable pageable, @RequestBody CustomerAccountFilterDTO customerAccountFilterDTO) {
+        log.debug("REST request to get CustomerAccount : {}", customerAccountFilterDTO.toString());
+        Page<CustomerAccount> customerAccount = customerAccountService.findAllByBankAndAccountType
+            (customerAccountFilterDTO.getBranchCode(),customerAccountFilterDTO.getAccountType(), pageable);
+        return customerAccount;
+    }
+
+    @GetMapping("/customer-accounts/branch/{code}")
+    public Page<CustomerAccount> getCustomerAccount(Pageable pageable, @PathVariable String code) {
+        log.debug("REST request to get CustomerAccount : {}", code);
+        Page<CustomerAccount> customerAccount = customerAccountService.findAllByBank(code, pageable);
+        return customerAccount;
+    }
+
+
+    @GetMapping("/customer-accounts/by-branch-and-account-type")
+    public ResponseEntity<Map<String, Map<AccountType, Long>>> getCustomerAccountByBranchCodeAndAccountType(Pageable pageable,
+                                                                                                 @RequestBody CustomerAccountFilterDTO customerAccountFilterDTO, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to delete SideEffect : {}");
+        Optional<Map<String, Map<AccountType, Long>>> accountTypeLongMap = customerAccountService.countByAccountTypeByBranchCode();
+
+        return ResponseUtil.wrapOrNotFound(accountTypeLongMap);
+    }
+
+
 }
+

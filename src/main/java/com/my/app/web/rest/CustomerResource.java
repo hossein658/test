@@ -126,11 +126,15 @@ public class CustomerResource {
     }
 
     @GetMapping("/customers/by-branch-code")
-    public ResponseEntity<List<CustomerDTO>> getCustomerByBracnhCode(Pageable pageable,
-                                                                     @RequestBody String branchCode, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<List<CustomerDTO>> getCustomerByBranchCode(Pageable pageable,
+                                                                     @RequestBody String branchCode,
+                                                                     UriComponentsBuilder uriBuilder) {
         log.debug("REST request to delete SideEffect : {}");
-        Page<CustomerDTO> page = customerService.findByBranchCode(pageable, branchCode);
+
+        Page<CustomerDTO> page = customerService.findCustomerByBranchCode(pageable, branchCode);
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
+
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

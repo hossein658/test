@@ -44,5 +44,5 @@ public interface BankService {
      */
     void delete(Long id);
 
-
+    Bank findBankByBranchCode(String branchCode);
 }
