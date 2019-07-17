@@ -4,6 +4,7 @@ import com.my.app.domain.Article;
 import com.my.app.repository.ArticleRepository;
 import com.my.app.service.ArticleService;
 import com.my.app.service.dto.ArticleDTO;
+import com.my.app.service.dto.CustomerArticleReportDTO;
 import com.my.app.service.mapper.ArticleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleMapper articleMapper;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, ArticleMapper articleMapper) {
+    public ArticleServiceImpl(ArticleRepository articleRepository,
+                              ArticleMapper articleMapper) {
         this.articleRepository = articleRepository;
         this.articleMapper = articleMapper;
     }
@@ -89,5 +91,19 @@ public class ArticleServiceImpl implements ArticleService {
     public Page<ArticleDTO> findCustomizedArticle(Pageable page) {
         return articleRepository.findCustomizedArticle(page)
             .map(articleMapper::toDto);
+    }
+
+    @Override
+    public Page<ArticleDTO> getListTransaction(Pageable p,
+                                               CustomerArticleReportDTO customerArticleReportDTO) {
+
+        log.debug("hhhhh: {}");
+        return articleRepository.getListTransaction(p,
+            customerArticleReportDTO.getStartDateTransaction(),
+            customerArticleReportDTO.getEndDateTransaction(),
+            customerArticleReportDTO.getAccountNumber())
+            .map(articleMapper::toDto);
+
+
     }
 }

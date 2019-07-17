@@ -32,4 +32,7 @@ public interface CustomerAccountRepository extends JpaRepository<CustomerAccount
                                                          @Param("genderType") GenderType genderType,
                                                          @Param("accountType") AccountType accountType);
 
+
+
+
 }

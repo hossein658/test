@@ -3,6 +3,7 @@ package com.my.app.web.rest;
 import com.my.app.domain.Article;
 import com.my.app.service.ArticleService;
 import com.my.app.service.dto.ArticleDTO;
+import com.my.app.service.dto.CustomerArticleReportDTO;
 import com.my.app.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -20,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -125,5 +127,17 @@ public class ArticleResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
+
+    @GetMapping("/article/report")
+    public ResponseEntity<List<ArticleDTO>> getArticleReport(Pageable p ,
+                                                      CustomerArticleReportDTO customerArticleReportDTO ,
+                                                      UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get article report : {}");
+       Page<ArticleDTO> customer=articleService.getListTransaction(p ,
+           customerArticleReportDTO);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, customer);
+
+        return ResponseEntity.ok().headers(headers).body(customer.getContent());
+    }
 
 }

@@ -2,6 +2,7 @@ package com.my.app.service;
 
 import com.my.app.domain.Article;
 import com.my.app.service.dto.ArticleDTO;
+import com.my.app.service.dto.CustomerArticleReportDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -46,4 +47,5 @@ public interface ArticleService {
 
     Page<ArticleDTO> findCustomizedArticle(Pageable page);
 
+    Page<ArticleDTO> getListTransaction(Pageable p, CustomerArticleReportDTO customerArticleReportDTO);
 }
