@@ -7,7 +7,7 @@
         Added the constraints for entity Customer.
     -->
     <changeSet id="20190710141122-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="bank_id"
                                  baseTableName="customer"
                                  constraintName="fk_customer_bank_id"

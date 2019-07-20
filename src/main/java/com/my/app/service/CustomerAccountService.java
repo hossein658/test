@@ -47,7 +47,7 @@ public interface CustomerAccountService {
      */
     void delete(Long id);
 
-    Page<CustomerAccountDTO> findByBranchCode(Pageable pageable, String branchCode);
+    Page<CustomerAccountDTO> findByBranchCode (Pageable pageable , String branchCode);
 
     Page<CustomerAccountDTO> findByGenderAndAccountType(Pageable pageable, GenderType genderType, AccountType accountType);
 

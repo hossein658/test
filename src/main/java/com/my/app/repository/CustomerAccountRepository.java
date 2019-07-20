@@ -25,7 +25,6 @@ public interface CustomerAccountRepository extends JpaRepository<CustomerAccount
         "where b.branchCode = :branchCode ")
     Page<CustomerAccount> findByBranchCode(Pageable page, @Param("branchCode") String branchCode);
 
-
     @Query("select ca from CustomerAccount ca " +
         "inner join ca.customer c " +
         "where ca.accountType  = :accountType " +
@@ -47,6 +46,7 @@ public interface CustomerAccountRepository extends JpaRepository<CustomerAccount
     Page<CustomerAccount> findAllByBank(Bank bank, Pageable pageable);
 
     Page<CustomerAccount> findAllByBankAndAccountType(Bank bank, AccountType accountType, Pageable pageable);
+
 
 /*
 

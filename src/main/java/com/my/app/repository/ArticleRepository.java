@@ -17,4 +17,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("select article from Article article")
     Page<Article> findCustomizedArticle(Pageable page);
+
+
 }

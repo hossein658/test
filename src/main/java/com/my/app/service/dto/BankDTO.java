@@ -1,4 +1,5 @@
 package com.my.app.service.dto;
+
 import com.my.app.domain.Bank;
 
 import java.io.Serializable;

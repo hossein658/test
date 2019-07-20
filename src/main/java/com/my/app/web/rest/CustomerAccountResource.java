@@ -156,10 +156,11 @@ public class CustomerAccountResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    /*    */
+
     /**
-     *
      * @return
-     */
+     *//*
 
     @GetMapping("/customer-accounts/by-account-type")
     public ResponseEntity<Map<AccountType,Long>> getCustomerAccountCountByAccountType() {
@@ -167,13 +168,12 @@ public class CustomerAccountResource {
        Optional<Map<AccountType,Long>> accountTypeLongMap = customerAccountService.countByAccountTypeAndByBank();
        // HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, page);
         return ResponseUtil.wrapOrNotFound(accountTypeLongMap);
-    }
-
+    }*/
     @PostMapping("/customer-accounts/bank-by-type")
     public Page<CustomerAccount> getCustomerAccount(Pageable pageable, @RequestBody CustomerAccountFilterDTO customerAccountFilterDTO) {
         log.debug("REST request to get CustomerAccount : {}", customerAccountFilterDTO.toString());
         Page<CustomerAccount> customerAccount = customerAccountService.findAllByBankAndAccountType
-            (customerAccountFilterDTO.getBranchCode(),customerAccountFilterDTO.getAccountType(), pageable);
+            (customerAccountFilterDTO.getBranchCode(), customerAccountFilterDTO.getAccountType(), pageable);
         return customerAccount;
     }
 
@@ -187,13 +187,10 @@ public class CustomerAccountResource {
 
     @GetMapping("/customer-accounts/by-branch-and-account-type")
     public ResponseEntity<Map<String, Map<AccountType, Long>>> getCustomerAccountByBranchCodeAndAccountType(Pageable pageable,
-                                                                                                 @RequestBody CustomerAccountFilterDTO customerAccountFilterDTO, UriComponentsBuilder uriBuilder) {
+                                                                                                            @RequestBody CustomerAccountFilterDTO customerAccountFilterDTO, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to delete SideEffect : {}");
         Optional<Map<String, Map<AccountType, Long>>> accountTypeLongMap = customerAccountService.countByAccountTypeByBranchCode();
 
         return ResponseUtil.wrapOrNotFound(accountTypeLongMap);
     }
-
-
 }
-

@@ -99,16 +99,16 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
     }
 
 
-  /*  @Override
+ /*   @Override
     public Page<CustomerAccountsGroupByGenderAndTypeDTO> findCustomerAccountsGroupByGenderAndTypeDTO(Pageable pageable) {
-        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
-        Page<CustomerAccountsGroupByGenderAndTypeDTO > p = customerAccounts.stream()
-            .map(new CustomerAccountsGroupByGenderAndTypeDTO() )
-            .collect(Collectors.toList());
+//        Page<CustomerAccount> customerAccounts = customerAccountRepository.findAll(pageable);
+//        Page<CustomerAccountsGroupByGenderAndTypeDTO > p = customerAccounts.stream()
+//            .map(new CustomerAccountsGroupByGenderAndTypeDTO() )
+//            .collect(Collectors.toList()            );
+
 
         return null;
     }*/
-
 
     /**
      * get a branchCode

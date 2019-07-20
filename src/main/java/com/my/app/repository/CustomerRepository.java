@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 /**
  * Spring Data  repository for the Customer entity.
@@ -15,11 +17,10 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-
     @Query("select c from Customer c " +
-        " inner join c.bank b " +
-        " where b.branchCode = :branchCode ")
+        "inner join c.bank b " +
+        "where b.branchCode = :branchCode")
+    Page<Customer> findByBranchCode(Pageable page , @Param("branchCode") String branchCode);
 
-    Page<Customer> findByBranchCode(Pageable pageable , @Param("branchCode") String branchCode);
-
+    Optional<Customer> findByIdNumber(Integer idNumber);
 }

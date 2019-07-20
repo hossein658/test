@@ -17,11 +17,11 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="branch_code" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="branch_name" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -44,9 +44,9 @@
     -->
     <changeSet id="20190710141121-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/data/bank.csv"
-                  separator=";"
-                  tableName="bank">
+            file="config/liquibase/data/bank.csv"
+            separator=";"
+            tableName="bank">
             <column name="id" type="numeric"/>
             <column name="branch_code" type="string"/>
             <column name="branch_name" type="string"/>

@@ -1,5 +1,8 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
     <changeSet author="PC_2 (generated)" id="1562770276688-1">
         <createTable tableName="article">
             <column autoIncrement="true" name="id" type="BIGINT">
@@ -128,24 +131,45 @@
         <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-12">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority"
+                                 constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-13">
-        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data"
+                                 constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="event_id"
+                                 referencedTableName="jhi_persistent_audit_event" validate="true"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-14">
-        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer_account" constraintName="FK3gtaytfw9tjuh1nrj5k3m794o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bank" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer_account"
+                                 constraintName="FK3gtaytfw9tjuh1nrj5k3m794o" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bank"
+                                 validate="true"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-15">
-        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority"
+                                 constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="name"
+                                 referencedTableName="jhi_authority" validate="true"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-16">
-        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_account" constraintName="FK6c5oqutth35p5vmw0svg56msa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_account"
+                                 constraintName="FK6c5oqutth35p5vmw0svg56msa" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-17">
-        <addForeignKeyConstraint baseColumnNames="customer_account_id" baseTableName="article" constraintName="FKdxelhfpm4ld2ifwhedmvy39c8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer_account" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="customer_account_id" baseTableName="article"
+                                 constraintName="FKdxelhfpm4ld2ifwhedmvy39c8" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="customer_account" validate="true"/>
     </changeSet>
     <changeSet author="PC_2 (generated)" id="1562770276688-18">
-        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer" constraintName="FKkegxm9b6vhjh30rgc0tvrk0r7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bank" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer"
+                                 constraintName="FKkegxm9b6vhjh30rgc0tvrk0r7" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bank"
+                                 validate="true"/>
     </changeSet>
 </databaseChangeLog>

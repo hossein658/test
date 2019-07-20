@@ -7,7 +7,7 @@ public class CustomerAccountsGroupByGenderAndTypeDTO {
 
     private GenderType genderType;
     private AccountType accountType;
-    private CustomerAccountDTO customerAccountDTO ;
+    private CustomerAccountDTO customerAccountDTO;
 
     public CustomerAccountsGroupByGenderAndTypeDTO(GenderType genderType, AccountType accountType, CustomerAccountDTO customerAccountDTO) {
         this.genderType = genderType;

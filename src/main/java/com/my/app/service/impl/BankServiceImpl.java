@@ -1,6 +1,5 @@
 package com.my.app.service.impl;
 
-
 import com.my.app.domain.Bank;
 import com.my.app.repository.BankRepository;
 import com.my.app.service.BankService;
@@ -25,6 +24,7 @@ public class BankServiceImpl implements BankService {
     private final Logger log = LoggerFactory.getLogger(BankServiceImpl.class);
     private final BankRepository bankRepository;
     private final BankMapper bankMapper;
+
 
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")

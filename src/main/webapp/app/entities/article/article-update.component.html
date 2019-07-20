@@ -7,14 +7,16 @@
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                           readonly/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_dateTransaction">Date Transaction</label>
                     <div class="input-group">
-                        <input id="field_dateTransaction" type="text" class="form-control" name="dateTransaction" ngbDatepicker  #dateTransactionDp="ngbDatepicker" formControlName="dateTransaction"/>
+                        <input id="field_dateTransaction" type="text" class="form-control" name="dateTransaction"
+                               ngbDatepicker #dateTransactionDp="ngbDatepicker" formControlName="dateTransaction"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dateTransactionDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="dateTransactionDp.toggle()"><fa-icon
+                                [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                     </div>
                 </div>
@@ -30,7 +32,8 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_transActionType">Trans Action Type</label>
-                    <select class="form-control" name="transActionType" formControlName="transActionType" id="field_transActionType">
+                    <select class="form-control" name="transActionType" formControlName="transActionType"
+                            id="field_transActionType">
                         <option value="DEBTOR">DEBTOR</option>
                         <option value="CREDITOR">CREDITOR</option>
                     </select>
@@ -43,17 +46,20 @@
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_customerAccount">Customer Account</label>
-                    <select class="form-control" id="field_customerAccount" name="customerAccount" formControlName="customerAccountId">
+                    <select class="form-control" id="field_customerAccount" name="customerAccount"
+                            formControlName="customerAccountId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="customerAccountOption.id" *ngFor="let customerAccountOption of customeraccounts; trackBy: trackCustomerAccountById">{{customerAccountOption.id}}</option>
+                        <option [ngValue]="customerAccountOption.id"
+                                *ngFor="let customerAccountOption of customeraccounts; trackBy: trackCustomerAccountById">{{customerAccountOption.id}}</option>
                     </select>
                 </div>
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
                 </button>
             </div>

@@ -3,6 +3,7 @@ package com.my.app.web.rest;
 import com.my.app.domain.Article;
 import com.my.app.service.ArticleService;
 import com.my.app.service.dto.ArticleDTO;
+import com.my.app.service.dto.FindArticleByIdNumberAndAccountNumberDTO;
 import com.my.app.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -86,9 +87,9 @@ public class ArticleResource {
     /**
      * {@code GET  /articles} : get all the articles.
      *
-     * @param pageable the pagination information.
+     * @param pageable    the pagination information.
      * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
+     * @param uriBuilder  a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of articles in body.
      */
     @GetMapping("/articles")
@@ -125,5 +126,14 @@ public class ArticleResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
+
+    @GetMapping("/articles/id-number-and-account-number")
+    public ResponseEntity<ArticleDTO> findArticleByCustomerIdNumberAndAccountNumber
+        (@RequestBody FindArticleByIdNumberAndAccountNumberDTO findArticleByIdNumberAndAccountNumberDTO){
+        log.debug("REST request to delete Article : {}", findArticleByIdNumberAndAccountNumberDTO.toString());
+        List<ArticleDTO> articleByCustomerIdNumberAndAccountNumber = articleService.findArticleByCustomerIdNumberAndAccountNumber(findArticleByIdNumberAndAccountNumberDTO.getIdNumber(),
+            findArticleByIdNumberAndAccountNumberDTO.getAccountNumber());
+        return ResponseEntity.ok(articleByCustomerIdNumberAndAccountNumber.get(0));
+    }
 
 }

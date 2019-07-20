@@ -17,27 +17,27 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="account_number" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="status" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="account_type" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="balance" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="bank_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <column name="customer_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -60,9 +60,9 @@
     -->
     <changeSet id="20190710141123-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/data/customer_account.csv"
-                  separator=";"
-                  tableName="customer_account">
+            file="config/liquibase/data/customer_account.csv"
+            separator=";"
+            tableName="customer_account">
             <column name="id" type="numeric"/>
             <column name="account_number" type="string"/>
             <column name="status" type="string"/>
