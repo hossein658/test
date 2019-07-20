@@ -28,7 +28,7 @@ entity Article {
 	debtorAmount Long,
 	creditorAmount Long,
 	transActionType TransActionType,
-    description String
+    description String 
 }
 
 enum TransActionType {

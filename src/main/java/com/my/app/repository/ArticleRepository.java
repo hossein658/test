@@ -24,8 +24,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("select ca from Article ca " +
         "inner join ca.customerAccount c " +
-        "where  ca.dateTransaction between  :startdatetransaction and :enddatetransaction " +
-        "and  c.accountNumber = :customeraccount ")
+        "where ca.dateTransaction between  :startdatetransaction and :enddatetransaction " +
+        "and c.accountNumber = :customeraccount ")
     Page<Article> getListTransaction(Pageable page,
                                      @Param("startdatetransaction") LocalDate startDateTransaction,
                                      @Param("enddatetransaction") LocalDate enddatetransaction,

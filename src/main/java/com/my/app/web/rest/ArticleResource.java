@@ -3,6 +3,7 @@ package com.my.app.web.rest;
 import com.my.app.domain.Article;
 import com.my.app.service.ArticleService;
 import com.my.app.service.dto.ArticleDTO;
+import com.my.app.service.dto.CustomerAccountDTO;
 import com.my.app.service.dto.CustomerArticleReportDTO;
 import com.my.app.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -128,16 +129,15 @@ public class ArticleResource {
     }
 
 
-    @GetMapping("/article/report")
-    public ResponseEntity<List<ArticleDTO>> getArticleReport(Pageable p ,
-                                                      CustomerArticleReportDTO customerArticleReportDTO ,
-                                                      UriComponentsBuilder uriBuilder) {
+    @GetMapping("/articles/report")
+    public ResponseEntity<List<ArticleDTO>> getArticleReport(Pageable p,
+                                                             @RequestBody CustomerArticleReportDTO customerArticleReportDTO,
+                                                             UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get article report : {}");
-       Page<ArticleDTO> customer=articleService.getListTransaction(p ,
-           customerArticleReportDTO);
+        Page<ArticleDTO> customer = articleService.getListTransaction(p, customerArticleReportDTO);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder, customer);
-
         return ResponseEntity.ok().headers(headers).body(customer.getContent());
+
     }
 
 }
