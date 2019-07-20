@@ -129,8 +129,9 @@ public class ArticleResource {
 
 
     @GetMapping("/article/report")
-    public ResponseEntity<List<ArticleDTO>> getArticleReport(Pageable p ,
-                                                      CustomerArticleReportDTO customerArticleReportDTO ,
+    public ResponseEntity<List<ArticleDTO>> getArticleReport( Pageable p ,
+                                                              @RequestBody CustomerArticleReportDTO customerArticleReportDTO ,
+
                                                       UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get article report : {}");
        Page<ArticleDTO> customer=articleService.getListTransaction(p ,

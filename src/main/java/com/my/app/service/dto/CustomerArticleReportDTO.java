@@ -9,7 +9,13 @@ public class CustomerArticleReportDTO {
     private LocalDate startDateTransaction;
     private LocalDate endDateTransaction;
 
-    public CustomerArticleReportDTO(Long id, String accountNumber, LocalDate startDateTransaction, LocalDate endDateTransaction) {
+    public CustomerArticleReportDTO() {
+    }
+
+    public CustomerArticleReportDTO(Long id,
+                                    String accountNumber,
+                                    LocalDate startDateTransaction,
+                                    LocalDate endDateTransaction) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.startDateTransaction = startDateTransaction;
